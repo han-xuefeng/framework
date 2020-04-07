@@ -18,6 +18,7 @@ class ComposerStaticInit85ba36e05a1c5f36892d8c7a346ca745
             'Symfony\\Polyfill\\Php72\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Polyfill\\Intl\\Idn\\' => 26,
+            'Symfony\\Component\\Routing\\' => 26,
             'Symfony\\Component\\Mime\\' => 23,
             'Symfony\\Component\\HttpFoundation\\' => 33,
         ),
@@ -35,6 +36,10 @@ class ComposerStaticInit85ba36e05a1c5f36892d8c7a346ca745
         'Symfony\\Polyfill\\Intl\\Idn\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-intl-idn',
+        ),
+        'Symfony\\Component\\Routing\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/routing',
         ),
         'Symfony\\Component\\Mime\\' => 
         array (
