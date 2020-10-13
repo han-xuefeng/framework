@@ -1,17 +1,16 @@
 <?php
 
-
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-use Symfony\Component\Routing\RouteCollection;
-use Symfony\Component\Routing\Route;
-
+use Symfony\Component\Routing\Generator\UrlGenerator;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 
+$routes = require_once __DIR__ . '/../src/app.php';
 
 $request = Request::createFromGlobals();
 
@@ -20,33 +19,18 @@ $response = new Response();
 $context = new RequestContext();
 $context->fromRequest($request);
 
-$routes = new RouteCollection();
-
-$routes->add('hello', new Route('/hello/{name}', array('name' => 'World')));
-$routes->add('hello/ccc', new Route('/hello/ccc'));
-$routes->add('bye', new Route('/bye'));
-
-
 $matcher = new UrlMatcher($routes, $context);
 
-
-$attributes = $matcher->match($request->getPathInfo());
-
-
-
-$map = [
-    '/hello'=>__DIR__.'/../src/pages/hello.php',
-    '/bye'=>__DIR__.'/../src/pages/bye.php',
-];
-
-$path = $request->getPathInfo();
-
-if(isset($map['/'.$attributes['_route']])){
+try {
+    $attribute = $matcher->match($request->getPathInfo());
+    extract($attribute, EXTR_SKIP);
     ob_start();
-    include $map['/'.$attributes['_route']];//$map[$path];
-    $response->setContent(ob_get_clean());
-}else{
-    $response->setStatusCode(404);
-    $response->setContent('not found');
+    include sprintf(__DIR__.'/../src/pages/%s.php', $_route);
+    $response = new Response(ob_get_clean());
+} catch (Routing\Exception\ResourceNotFoundException $e) {
+    $response = new Response('Not Found', 404);
+} catch (Exception $e) {
+    $response = new Response('An error occurred', 500);
 }
+
 $response->send();

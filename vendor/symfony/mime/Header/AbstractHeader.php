@@ -17,8 +17,6 @@ use Symfony\Component\Mime\Encoder\QpMimeHeaderEncoder;
  * An abstract base MIME Header.
  *
  * @author Chris Corbyn
- *
- * @experimental in 4.3
  */
 abstract class AbstractHeader implements HeaderInterface
 {
@@ -222,7 +220,7 @@ abstract class AbstractHeader implements HeaderInterface
      */
     protected function generateTokenLines(string $token): array
     {
-        return preg_split('~(\r\n)~', $token, -1, PREG_SPLIT_DELIM_CAPTURE);
+        return preg_split('~(\r\n)~', $token, -1, \PREG_SPLIT_DELIM_CAPTURE);
     }
 
     /**
