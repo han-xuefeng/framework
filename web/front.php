@@ -1,36 +1,36 @@
 <?php
 
 require_once __DIR__ . '/../vendor/autoload.php';
+error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
 
+use Simplex\ContentLengthListener;
+use Simplex\Framework;
+use Simplex\GoogleListener;
+use Simplex\ResponseEvent;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-
-use Symfony\Component\Routing\Generator\UrlGenerator;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\HttpKernel\Controller\ArgumentResolver;
+use Symfony\Component\HttpKernel\Controller\ControllerResolver;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\Matcher\UrlMatcher;
 
-$routes = require_once __DIR__ . '/../src/app.php';
-
 $request = Request::createFromGlobals();
-
-$response = new Response();
+$routes = include __DIR__.'/../src/app.php';
 
 $context = new RequestContext();
-$context->fromRequest($request);
-
 $matcher = new UrlMatcher($routes, $context);
 
-try {
-    $attribute = $matcher->match($request->getPathInfo());
-    extract($attribute, EXTR_SKIP);
-    ob_start();
-    include sprintf(__DIR__.'/../src/pages/%s.php', $_route);
-    $response = new Response(ob_get_clean());
-} catch (Routing\Exception\ResourceNotFoundException $e) {
-    $response = new Response('Not Found', 404);
-} catch (Exception $e) {
-    $response = new Response('An error occurred', 500);
-}
+$controllerResolver = new ControllerResolver();
+$argumentResolver = new ArgumentResolver();
+
+$dispatcher = new EventDispatcher();
+
+//$dispatcher->addListener('response', array(new Simplex\ContentLengthListener(), 'onResponse'), -255);
+//$dispatcher->addListener('response', array(new Simplex\GoogleListener(), 'onResponse'));
+$dispatcher->addSubscriber(new ContentLengthListener());
+$dispatcher->addSubscriber(new GoogleListener());
+
+$framework = new Framework($dispatcher, $matcher, $controllerResolver, $argumentResolver);
+$response = $framework->handle($request);
 
 $response->send();
