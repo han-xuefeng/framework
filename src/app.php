@@ -12,7 +12,7 @@ $routes->add('hello', new Route('/hello/{name}', array(
     }
 )));
 //$routes->add('hello/ccc', new Route('/hello/ccc'));
-$routes->add('bye', new Route('/bye'));
+$routes->add('bye', new Route('/'));
 
 $routes->add('leap_year', new Route('/is_leap_year/{year}', array(
     'year' => null,
