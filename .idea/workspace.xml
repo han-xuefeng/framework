@@ -41,11 +41,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="94fc74e9-1fbb-49c3-9cb7-a469569556dd" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Calendar/Controller/LeapYearController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Calendar/Controller/LeapYearController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Simplex/Framework.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Simplex/Framework.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/front.php" beforeDir="false" afterPath="$PROJECT_DIR$/web/front.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -158,7 +155,7 @@
       <workItem from="1602593002152" duration="6144000" />
       <workItem from="1602639481821" duration="28486000" />
       <workItem from="1602747873635" duration="6028000" />
-      <workItem from="1603072120557" duration="4254000" />
+      <workItem from="1603072120557" duration="6656000" />
     </task>
     <servers />
   </component>
@@ -186,10 +183,10 @@
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="2610" y="266" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602658974768" />
-    <state x="2703" y="240" key="NewPhpClassDialog" timestamp="1602686961482">
+    <state x="2703" y="240" key="NewPhpClassDialog" timestamp="1603079274969">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
-    <state x="2703" y="240" key="NewPhpClassDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1602686961482" />
+    <state x="2703" y="240" key="NewPhpClassDialog/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1603079274969" />
     <state x="2711" y="443" key="NewPhpFileDialog" timestamp="1602660327612">
       <screen x="1920" y="0" width="1920" height="1040" />
     </state>
