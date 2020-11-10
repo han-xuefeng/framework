@@ -20,9 +20,6 @@ use SebastianBergmann\CodeCoverage\Directory;
 use SebastianBergmann\CodeCoverage\Driver\WriteOperationFailedException;
 use SebastianBergmann\CodeCoverage\Node\File;
 
-/**
- * @internal This class is not covered by the backward compatibility promise for phpunit/php-code-coverage
- */
 final class Cobertura
 {
     /**
@@ -132,7 +129,7 @@ final class Cobertura
                 $classElement = $document->createElement('class');
 
                 $classElement->setAttribute('name', $className);
-                $classElement->setAttribute('filename', str_replace($report->pathAsString() . '/', '', $item->pathAsString()));
+                $classElement->setAttribute('filename', str_replace($report->pathAsString() . DIRECTORY_SEPARATOR, '', $item->pathAsString()));
                 $classElement->setAttribute('line-rate', (string) $lineRate);
                 $classElement->setAttribute('branch-rate', (string) $branchRate);
                 $classElement->setAttribute('complexity', (string) $class['ccn']);
@@ -206,7 +203,7 @@ final class Cobertura
 
             $classElement = $document->createElement('class');
             $classElement->setAttribute('name', basename($item->pathAsString()));
-            $classElement->setAttribute('filename', str_replace($report->pathAsString() . '/', '', $item->pathAsString()));
+            $classElement->setAttribute('filename', str_replace($report->pathAsString() . DIRECTORY_SEPARATOR, '', $item->pathAsString()));
 
             $methodsElement = $document->createElement('methods');
 
